@@ -70,6 +70,12 @@ export function Nav() {
         <Link href="/LIPs" className={`mr-5 text-sm ${pathname !== '/LIPs' && 'opacity-60'}`}>
           <p>LIPs</p>
         </Link>
+        <Link href="/OAs" className={`mr-5 text-sm ${pathname !== '/OAs' && 'opacity-60'}`}>
+          <p>Open Actions</p>
+        </Link>
+        <Link href="/ProfileChecker" className={`mr-5 text-sm ${pathname !== '/ProfileChecker' && 'opacity-60'}`}>
+          <p>Profile Checker</p>
+        </Link>
 
         {
           address && (
