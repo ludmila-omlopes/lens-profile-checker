@@ -1,5 +1,3 @@
-// moduleUtils.ts
-
 import { getPendingModules, getApprovedModules } from '../app/githubApi';
 
 export type User = {
