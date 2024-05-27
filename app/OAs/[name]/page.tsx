@@ -16,7 +16,6 @@ const ModuleDetail = () => {
             const fetchModule = async () => {
                 try {
                     const foundModule = await getLensModuleByName(moduleName);
-                    console.log('foundModule:', foundModule);
                     if (foundModule) {
                         setModule(foundModule);
                     }
@@ -35,8 +34,6 @@ const ModuleDetail = () => {
     const getAddressLink = (address: string) => {
         const addressRegex = /0x[a-fA-F0-9]{40}/;
         const match = address.match(addressRegex);
-        console.log('match:', match);
-        console.log('address:', address);
         if (match) {
             const extractedAddress = match[0];
             return (
@@ -125,7 +122,7 @@ const ModuleDetail = () => {
                                     </div>
                                     <div className="flex items-center gap-2 mt-4">
                                         <LinkIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                                        <a className="text-blue-500 hover:underline dark:text-blue-400" href={`https://github.com/${module.user.login}/${module.id}`} target="_blank" rel="noopener noreferrer">
+                                        <a className="text-blue-500 hover:underline dark:text-blue-400" href={`https://github.com/lens-protocol/verified-modules/pull/${module.number}`} target="_blank" rel="noopener noreferrer">
                                             See on GitHub
                                         </a>
                                     </div>

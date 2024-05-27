@@ -15,6 +15,7 @@ export type LensModule = {
     verified: boolean;
     summary: string;
     id: number;
+    number: number;
     user: User;
     created_at: string;
     status: 'pending' | 'approved';
@@ -88,6 +89,7 @@ export const getAllLensModules = async (): Promise<LensModule[]> => {
                 return {
                     ...parsedBody,
                     id: module.id,
+                    number: module.number,
                     user: {
                         login: module.user.login,
                         avatar_url: module.user.avatar_url,
@@ -107,6 +109,7 @@ export const getAllLensModules = async (): Promise<LensModule[]> => {
                 return {
                     ...parsedBody,
                     id: module.id,
+                    number: module.number,
                     user: {
                         login: module.user.login,
                         avatar_url: module.user.avatar_url,
