@@ -6,7 +6,7 @@ import { useAccount, useDisconnect } from 'wagmi';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { ModeToggle } from '@/components/dropdown';
-import { ChevronRight, Droplets, LogOut } from "lucide-react";
+import { ChevronRight, Waypoints, LogOut } from "lucide-react";
 import { useCallback } from 'react';
 import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -60,8 +60,8 @@ export function Nav() {
         className='py-3 px-8 flex flex-1 items-center p'
       >
         <Link href="/" className='mr-5 flex items-center'>
-          <Droplets className="opacity-85" size={19} />
-          <p className={`ml-2 mr-4 text-lg font-semibold`}>Lens Dashboard</p>
+          <Waypoints className="opacity-85" size={19} />
+          <p className={`ml-2 mr-4 text-lg font-semibold`}>Oriona</p>
         </Link>
 
         <Link href="/" className={`mr-5 text-sm ${pathname !== '/' && 'opacity-50'}`}>
