@@ -22,11 +22,11 @@ export const filterLIPs = (pullRequests: PullRequest[]): PullRequest[] => {
 };
 
 export const parseLIP = (pullRequest: PullRequest, commentsCount: number, status: 'pending' | 'merged'): LIP => {
-    const lipIdMatch = pullRequest.title.match(/LIP[-\s]*#?(\d+)/i);
+    const lipIdMatch = pullRequest.title.match(/LIP[-:\s]*#?\[?(\d+)\]?/i);
     const id = lipIdMatch ? `LIP-${lipIdMatch[1]}` : 'N/A';
 
     // Remove the "LIP - #" part from the title, including any brackets or special characters
-    var titleWithoutId = pullRequest.title.replace(/LIP[-\s]*#?\d+[\s:\-]*[\[\]{}()]*/i, '').trim();
+    var titleWithoutId = pullRequest.title.replace(/LIP[-\s]*#?\[?\d+\]?[\s:\-]*[\[\]{}()]*/i, '').trim();
     titleWithoutId = titleWithoutId.replace(/[\[\]{}()-:]/g, '');
 
     return {
