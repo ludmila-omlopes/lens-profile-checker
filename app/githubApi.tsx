@@ -1,8 +1,14 @@
 const GITHUB_MODULES_API_URL = 'https://api.github.com/repos/lens-protocol/verified-modules';
 const GITHUB_LIPS_API_URL = 'https://api.github.com/repos/lens-protocol/LIPs';
 
+const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+
+if (!GITHUB_TOKEN) {
+  throw new Error('GitHub token is not defined. Please set the NEXT_PUBLIC_GITHUB_TOKEN environment variable.');
+}
+
 const headers = new Headers({
-  'Authorization': `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+  'Authorization': `Bearer ${GITHUB_TOKEN}`, // Changed from 'token' to 'Bearer'
   'Accept': 'application/vnd.github.v3+json'
 });
 
@@ -26,7 +32,7 @@ export type PullRequest = {
 export const getPendingModules = async () => {
   const response = await fetch(`${GITHUB_MODULES_API_URL}/pulls?state=open`, { headers });
   if (!response.ok) {
-    throw new Error('Failed to fetch pending modules');
+    throw new Error(`Failed to fetch pending modules: ${response.statusText}`);
   }
   return await response.json();
 };
@@ -34,7 +40,7 @@ export const getPendingModules = async () => {
 export const getApprovedModules = async () => {
   const response = await fetch(`${GITHUB_MODULES_API_URL}/pulls?state=closed`, { headers });
   if (!response.ok) {
-    throw new Error('Failed to fetch approved modules');
+    throw new Error(`Failed to fetch approved modules: ${response.statusText}`);
   }
   const allClosedPulls = await response.json();
   const approvedModules = allClosedPulls.filter((pull: any) => pull.merged_at !== null);
@@ -45,7 +51,7 @@ export const getPendingLIPs = async (): Promise<PullRequest[]> => {
   try {
     const response = await fetch(`${GITHUB_LIPS_API_URL}/pulls?state=open`, { headers });
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(`Failed to fetch pending LIPs: ${response.statusText}`);
     }
     const data = await response.json();
     if (!Array.isArray(data)) {
@@ -62,7 +68,7 @@ export const getMergedLIPs = async (): Promise<PullRequest[]> => {
   try {
     const response = await fetch(`${GITHUB_LIPS_API_URL}/pulls?state=closed`, { headers });
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(`Failed to fetch merged LIPs: ${response.statusText}`);
     }
     const data = await response.json();
     if (!Array.isArray(data)) {
