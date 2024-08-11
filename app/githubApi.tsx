@@ -2,7 +2,7 @@ const GITHUB_MODULES_API_URL = 'https://api.github.com/repos/lens-protocol/verif
 const GITHUB_LIPS_API_URL = 'https://api.github.com/repos/lens-protocol/LIPs';
 
 const headers = new Headers({
-  'Authorization': `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+  //'Authorization': `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
   'Accept': 'application/vnd.github.v3+json'
 });
 
