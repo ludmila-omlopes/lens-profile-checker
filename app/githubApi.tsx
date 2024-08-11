@@ -8,7 +8,7 @@ if (!GITHUB_TOKEN) {
 }
 
 const headers = new Headers({
-  'Authorization': `Bearer ${GITHUB_TOKEN}`, // Changed from 'token' to 'Bearer'
+  'Authorization': `token ${GITHUB_TOKEN}`, // Changed from 'token' to 'Bearer'
   'Accept': 'application/vnd.github.v3+json'
 });
 
